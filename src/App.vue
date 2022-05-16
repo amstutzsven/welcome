@@ -111,7 +111,7 @@ font-weight: 900;
   width: 20%;
 }
 footer{
-  margin-left: 5rem;
+  margin-left: 42rem;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
