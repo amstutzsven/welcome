@@ -27,17 +27,16 @@
     </ul>
 
     <footer>
-<img class="img" src="./assets/STZH_SEB_Logo.png"
-/>
-<img class="img" src="./assets/Opportunity.png"
-/>
-<img class="img" src="./assets/SAG_Logo_De.png"
-/>
+      <img class="img" src="./assets/STZH_SEB_Logo.png"
+      />
+      <img class="img" src="./assets/Opportunity.png"
+      />
+      <img class="img" src="./assets/SAG_Logo_De.png"
+      />
     </footer>
   
     </div>
   </body>
-
 </template>
 
 <script>
@@ -67,7 +66,8 @@ body {
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between;padding-bottom: 10px;
+  background-color: #FFFFFF;
   min-height: 100vh;
   font-size: 28px;
   line-height: 36px;
@@ -78,44 +78,41 @@ body {
   background-color: #0F05A0;
   color:#ffbfab;
   margin: 2rem;
-  padding: 2rem;
-  ;
-  
- 
+  padding: 2rem; 
 }
+
 .unorderedList{
   line-height: 1rem;
-  margin-right: 5rem;
+  margin-right: 10rem;
 }
+
 .entry-daytime {
   color: #EB5E00;
   font-weight: 900;
-
 }
+
 .header {
- 
   margin-left: 4.5rem;
   margin-right: 40rem;
   text-align: left;
   font-size: small;
   line-height: 1em;
-
   }
 
 .currentTime{
-font-size: 28px;
-font-weight: 900;
+  font-size: 28px;
+  font-weight: 900;
 }
+
 .img{
   width: 20%;
 }
-footer{
-  margin-left: 20rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  
 
+footer{
+  display: flex;
+  align-content: bottom;
+  padding-bottom: 10px;
+  background-color: #ffffff;
 }
 
 </style>
