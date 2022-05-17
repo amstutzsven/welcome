@@ -5,14 +5,16 @@
         <h1 style="text-align: left">{{ title }}</h1>
         <p class="currentTime">{{ currentDateTime() }}</p>
       </div>
+      
       <ul class="unorderedList">
         <li class="li"
         v-for="entry in entries"
         :key="entry.id"
-        >
-          <span class="entry">{{ entry }}</span><br>
-          <h3>ich bin ein Titel</h3>
-          <span>ich bin eine Beschreibung</span><br>
+      >
+      
+      <span class="entry">{{ entry }}</span><br>
+      <h3>ich bin ein Titel</h3>
+      <span>ich bin eine Beschreibung</span><br>
         </li>
       </ul>
 
@@ -95,7 +97,7 @@ body {
 }
 .unorderedList {
   line-height: 0.5rem;
-  margin-right: 2rem;
+  margin-right: 20rem;
   margin-left: 0.5rem;
 }
 .entry-daytime {
@@ -120,11 +122,17 @@ body {
   margin-right: auto;
 }
 
-footer {
+.footer {
   display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 10px;
-  background-color: #ffffff;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  background: #ffffff;
 }
+
 </style>
 
