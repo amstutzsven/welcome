@@ -1,28 +1,30 @@
 <template>
   <body>
-    
     <div id="app">
       <div class="header">
       <h1 style="text-align: left">Welcome to Opportunity</h1>
       <p class="currentTime">{{ currentDateTime() }}</p>
     </div>
-      <ul class="unorderedList">
-        <li class="li">
-          <span class="entry-daytime">12.00 Uhr</span>
-          <h3>Basisbeschäftigung Besuch</h3>
-          <span class="entry-description">erster Eintrag </span>
-        </li>
-        <li class="li">
-          <span class="entry-daytime">14.00 Uhr </span>
-          <h3>Basisbeschäftigung Besuch 2</h3>
-            <span class="entry-description">nächster Eintrag </span>
-        </li>
-        <li class="li">
-          <span class="entry-daytime">16.00 Uhr</span>
-          <h3>Basisbeschäftigung Besuch X</h3>
-          <span class="entry-description">letzter Eintrag</span>
-        </li>
-      </ul>
+    
+    <ul class="unorderedList">
+      <li class="li">
+        <span class="entry-daytime">12.00 Uhr</span>
+        <h3>Basisbeschäftigung Besuch</h3>
+        <span class="entry-description">erster Eintrag </span>
+      </li>
+      
+      <li class="li">
+        <span class="entry-daytime">14.00 Uhr </span>
+        <h3>Basisbeschäftigung Besuch 2</h3>
+        <span class="entry-description">nächster Eintrag </span>
+      </li>
+    
+      <li class="li">
+        <span class="entry-daytime">16.00 Uhr</span>
+        <h3>Basisbeschäftigung Besuch X</h3>
+        <span class="entry-description">letzter Eintrag</span>
+      </li>
+    </ul>
 
     <footer>
 <img class="img" src="./assets/STZH_SEB_Logo.png"
@@ -31,9 +33,7 @@
 />
 <img class="img" src="./assets/SAG_Logo_De.png"
 />
-
     </footer>
-
   
     </div>
   </body>
@@ -57,6 +57,7 @@ export default {
   },
 };
 </script>
+
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap");
 body {
@@ -70,10 +71,8 @@ body {
   min-height: 100vh;
   font-size: 28px;
   line-height: 36px;
+}
 
-}
-#app {
-}
 .li {
   list-style-type: none;
   background-color: #0F05A0;
@@ -96,7 +95,7 @@ body {
 .header {
  
   margin-left: 4.5rem;
-  margin-right: 2rem;
+  margin-right: 40rem;
   text-align: left;
   font-size: small;
   line-height: 1em;
@@ -111,7 +110,7 @@ font-weight: 900;
   width: 20%;
 }
 footer{
-  margin-left: 42rem;
+  margin-left: 20rem;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
