@@ -2,39 +2,25 @@
   <body>
     <div id="app">
       <div class="header">
-      <h1 style="text-align: left">Welcome to Opportunity</h1>
-      <p class="currentTime">{{ currentDateTime() }}</p>
-    </div>
-    
-    <ul class="unorderedList">
-      <li class="li">
-        <span class="entry-daytime">12.00 Uhr</span>
-        <h3>Basisbeschäftigung Besuch</h3>
-        <span class="entry-description">erster Eintrag </span>
-      </li>
-      
-      <li class="li">
-        <span class="entry-daytime">14.00 Uhr </span>
-        <h3>Basisbeschäftigung Besuch 2</h3>
-        <span class="entry-description">nächster Eintrag </span>
-      </li>
-    
-      <li class="li">
-        <span class="entry-daytime">16.00 Uhr</span>
-        <h3>Basisbeschäftigung Besuch X</h3>
-        <span class="entry-description">letzter Eintrag</span>
-      </li>
-    </ul>
+        <h1 style="text-align: left">{{ title }}</h1>
+        <p class="currentTime">{{ currentDateTime() }}</p>
+      </div>
+      <ul class="unorderedList">
+        <li class="li"
+        v-for="entry in entries"
+        :key="entry.id"
+        >
+          <span class="entry">{{ entry }}</span><br>
+          <h3>ich bin ein Titel</h3>
+          <span>ich bin eine Beschreibung</span><br>
+        </li>
+      </ul>
 
-    <footer class="footer">
-      <img class="img" src="./assets/STZH_SEB_Logo.png"
-      />
-      <img class="img" src="./assets/Opportunity.png"
-      />
-      <img class="img" src="./assets/SAG_Logo_De.png"
-      />
-    </footer>
-  
+      <footer>
+        <img class="img" src="./assets/STZH_SEB_Logo.png" />
+        <img class="img" src="./assets/Opportunity.png" />
+        <img class="img" src="./assets/SAG_Logo_De.png" />
+      </footer>
     </div>
   </body>
 </template>
@@ -44,100 +30,101 @@ import axios from "axios";
 
 export default {
   name: "App",
-  data() {
-  sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
-  api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
-  entries: [],
-  currentDate: "",
+  data(){
+    return {
+      title: "Welcome to Opportunity",
+      sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
+      api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
+      entries:[1],
+      dateTime: "",
+    }
   },
-  computed = {
-    gsheet_url() {
-      return 'https'
-    }
-  }
-
-
-  function() {
-    return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+  computed: {
+    gsheet_url(){
+      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A2%3AE200&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`
     },
-
+  
+  },
   methods: {
-    getData() {
-      axios.get(this.gsheet_url).then((response) => )
-      this.entries = ''
-    }
     currentDateTime() {
       const current = new Date();
-      const date =
-        current.getDate() +
-        "." +
-        (current.getMonth() + 1) +
-        "." +
-        current.getFullYear();
-      return date;
+      const day = current.getDate();
+      const month = (current.getMonth()+1);
+      const year = current.getFullYear();
+    
+      const dateTime = day + '.' + month  + '.' + year;
+
+      if (month<10){
+        return day + '.' + '0' + month  + '.' + year;
+      }
+      return dateTime;
+    },
+    getData(){
+      axios.get(this.gsheet_url).then((response) => {
+        this.entries = response.data.valueRanges[0].values;
+      });
     },
   },
+  mounted() {
+    this.getData();
+  }
 };
 </script>
-
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap");
 body {
   margin: 0;
-  font-family: 'Inter', Helvetica, sans-serif;
+  font-family: "Inter", Helvetica, sans-serif;
   background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 20px;
-  background-color: #FFFFFF;
-  min-height: 10vh;
-  font-size: 28px;
+  min-height: 100vh;
+  font-size: 24px;
   line-height: 36px;
+  background-color: #e5e5e5;
 }
 
 .li {
   list-style-type: none;
-  background-color: #0F05A0;
-  color:#ffbfab;
-  margin: 2rem;
-  padding: 2rem; 
+  background-color: #0f05a0;
+  color: #ffbfab;
+  margin: 1.5rem;
+  padding: 2.5rem;
 }
-
-.unorderedList{
-  line-height: 1rem;
-  margin-right: 10rem;
+.unorderedList {
+  line-height: 0.5rem;
+  margin-right: 2rem;
+  margin-left: 0.5rem;
 }
-
 .entry-daytime {
-  color: #EB5E00;
+  color: #eb5e00;
   font-weight: 900;
 }
-
 .header {
   margin-left: 4.5rem;
-  margin-right: 10rem;
   text-align: left;
-  font-size: big;
-  line-height: 2em;
-  }
-
-.currentTime{
-  font-size: 30px;
-  font-weight: 900;
+  font-size: 25px;
+  line-height: 75px;
 }
 
-.img{
+.currentTime {
+  font-size: 48px;
+  color: grey;
+  line-height: 12px;
+}
+.img {
   width: 20%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-footer{
+footer {
   display: flex;
-  align-content: bottom;
+  flex-wrap: wrap;
   padding-bottom: 10px;
   background-color: #ffffff;
 }
-
 </style>
 
