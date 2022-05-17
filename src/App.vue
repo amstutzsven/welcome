@@ -26,7 +26,7 @@
       </li>
     </ul>
 
-    <footer>
+    <footer class="footer">
       <img class="img" src="./assets/STZH_SEB_Logo.png"
       />
       <img class="img" src="./assets/Opportunity.png"
@@ -40,9 +40,32 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "App",
+  data() {
+  sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
+  api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
+  entries: [],
+  currentDate: "",
+  },
+  computed = {
+    gsheet_url() {
+      return 'https'
+    }
+  }
+
+
+  function() {
+    return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+    },
+
   methods: {
+    getData() {
+      axios.get(this.gsheet_url).then((response) => )
+      this.entries = ''
+    }
     currentDateTime() {
       const current = new Date();
       const date =
@@ -66,9 +89,10 @@ body {
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;padding-bottom: 10px;
+  justify-content: space-between;
+  padding-top: 20px;
   background-color: #FFFFFF;
-  min-height: 100vh;
+  min-height: 10vh;
   font-size: 28px;
   line-height: 36px;
 }
@@ -93,14 +117,14 @@ body {
 
 .header {
   margin-left: 4.5rem;
-  margin-right: 40rem;
+  margin-right: 10rem;
   text-align: left;
-  font-size: small;
-  line-height: 1em;
+  font-size: big;
+  line-height: 2em;
   }
 
 .currentTime{
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 900;
 }
 
