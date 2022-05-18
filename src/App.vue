@@ -14,6 +14,7 @@
         v-for="entry in entries"
         :key="entry.id"
         >
+        
           <span class="entry">{{ entry[0] }} , {{entry[1].replaceAll("/",".")}}</span><br>
           <h3>{{entry[2]}}</h3>
           <span>{{entry[3]}}</span><br>
@@ -27,7 +28,6 @@
         <img class="img" src="./assets/Opportunity.png" />
         <img class="img" src="./assets/SAG_Logo_De.png" />
       </footer>
-    
     </div>
   </body>
 </template>
@@ -37,6 +37,7 @@ import axios from "axios";
 
 export default {
   name: "App",
+  
   data(){
     return {
       title: "Welcome to Opportunity",
@@ -46,12 +47,13 @@ export default {
       dateTime: "",
     }
   },
+  
   computed: {
     gsheet_url(){
       return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A2%3AE200&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`
     },
-  
   },
+  
   methods: {
     currentDate() {
       const current = new Date();
@@ -66,11 +68,12 @@ export default {
       }
       return dateTime;
     },
+  
     refreshData() {
         this.currentDate();
         this.getData();
     },
-    
+
     getData(){
       axios.get(this.gsheet_url).then((response) => {
         this.entries = response.data.valueRanges[0].values;
@@ -78,6 +81,7 @@ export default {
       });
     },
   },
+
   mounted() {
     this.refreshData();
     setInterval(() => {
@@ -110,15 +114,18 @@ body {
   margin: 1.5rem;
   padding: 2.5rem;
 }
+
 .unorderedList {
   line-height: 0.5rem;
   margin-right: 2rem;
   margin-left: 0.5rem;
 }
+
 .entry-daytime {
   color: #eb5e00;
   font-weight: 900;
 }
+
 .header {
   margin-left: 4.5rem;
   text-align: left;
@@ -131,6 +138,7 @@ body {
   color: grey;
   line-height: 12px;
 }
+
 .img {
   width: 20%;
   margin-left: auto;
