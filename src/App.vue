@@ -5,7 +5,11 @@
         <h1 style="text-align: left">{{ title }}</h1>
         <p class="currentTime">{{ currentDateTime() }}</p>
       </div>
-      <ul class="unorderedList">
+      
+      <ul
+        v-if="entries"
+        class="unorderedList">
+        
         <li class="li"
         v-for="entry in entries"
         :key="entry.id"
@@ -16,16 +20,14 @@
         </li>
       </ul>
 
-      <div v-if="!entries"></div>
-        <p> There are no meetings scheduled for today! </p>
-
-    
+      <p class="response" v-else>No meetings scheduled for today!</p>
 
       <footer>
         <img class="img" src="./assets/STZH_SEB_Logo.png" />
         <img class="img" src="./assets/Opportunity.png" />
         <img class="img" src="./assets/SAG_Logo_De.png" />
       </footer>
+    
     </div>
   </body>
 </template>
@@ -136,6 +138,12 @@ footer {
 
 .entry{
   color: red
+}
+
+.response{
+margin-left: 80px;
+font-size: 50px;
+color: rgb(49, 49, 208);
 }
 </style>
 
