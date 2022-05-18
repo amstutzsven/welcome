@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import axios from "axios";//axios is a library for making HTTP requests to the backend
+import axios from "axios";
 
 export default {
   name: "App",
@@ -63,6 +63,7 @@ export default {
     getData(){
       axios.get(this.gsheet_url).then((response) => {
         this.entries = response.data.valueRanges[0].values;
+        console.log(response);
       });
     },
   },
@@ -124,7 +125,8 @@ body {
 footer {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 10px;
+  position: fixed;
+  bottom: 0;
   background-color: #ffffff;
 }
 
