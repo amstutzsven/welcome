@@ -5,18 +5,17 @@
         <h1 style="text-align: left">{{ title }}</h1>
         <p class="currentTime">{{ currentDateTime() }}</p>
       </div>
-      
       <ul class="unorderedList">
         <li class="li"
         v-for="entry in entries"
         :key="entry.id"
-      >
-      
-      <span class="entry">{{ entry }}</span><br>
-      <h3>ich bin ein Titel</h3>
-      <span>ich bin eine Beschreibung</span><br>
+        >
+          <span class="entry">{{ entry[0] }} , {{entry[1].replaceAll("/",".")}}</span><br>
+          <h3>{{entry[2]}}</h3>
+          <span>{{entry[3]}}</span><br>
         </li>
       </ul>
+    
 
       <footer>
         <img class="img" src="./assets/STZH_SEB_Logo.png" />
@@ -28,7 +27,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios";//axios is a library for making HTTP requests to the backend
 
 export default {
   name: "App",
@@ -37,7 +36,7 @@ export default {
       title: "Welcome to Opportunity",
       sheet_id: "1a81aI0Y8ViZO0tI92h2YSMqVQJ8hmNNMyMylXgvwiU4",
       api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
-      entries:[1],
+      entries:[],
       dateTime: "",
     }
   },
@@ -97,7 +96,7 @@ body {
 }
 .unorderedList {
   line-height: 0.5rem;
-  margin-right: 20rem;
+  margin-right: 2rem;
   margin-left: 0.5rem;
 }
 .entry-daytime {
@@ -122,17 +121,15 @@ body {
   margin-right: auto;
 }
 
-.footer {
+footer {
   display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 40px;
-  background: #ffffff;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  background-color: #ffffff;
 }
 
+.entry{
+  color: red
+}
 </style>
 
