@@ -3,7 +3,7 @@
     <div id="app">
       <div class="header">
         <h1 style="text-align: left">{{ title }}</h1>
-        <p class="currentTime">{{ currentDateTime() }}</p>
+        <p class="currentTime">{{ currentDate() }}</p>
       </div>
       
       <ul
@@ -53,7 +53,7 @@ export default {
   
   },
   methods: {
-    currentDateTime() {
+    currentDate() {
       const current = new Date();
       const day = current.getDate();
       const month = (current.getMonth()+1);
@@ -66,6 +66,11 @@ export default {
       }
       return dateTime;
     },
+    refreshData() {
+        this.currentDate();
+        this.getData();
+    },
+    
     getData(){
       axios.get(this.gsheet_url).then((response) => {
         this.entries = response.data.valueRanges[0].values;
@@ -74,10 +79,14 @@ export default {
     },
   },
   mounted() {
-    this.getData();
-  }
+    this.refreshData();
+    setInterval(() => {
+      this.refreshData();
+    }, 1800000);
+  },
 };
 </script>
+
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap");
 body {
