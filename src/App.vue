@@ -15,6 +15,10 @@
           <span>{{entry[3]}}</span><br>
         </li>
       </ul>
+
+      <div v-if="!entries"></div>
+        <p> There are no meetings scheduled for today! </p>
+
     
 
       <footer>
